@@ -84,4 +84,22 @@ public class Main {
             throw new IllegalArgumentException("el id '" + args[1] + "' no es un número");
         }
     }
+    private static void listar(String[] args, RepositorioFichero repositorio) throws IOException {
+        Map<String, String> opciones = leerOpciones(args, Set.of("--estado", "--empresa"));
+        String estado = opciones.get("estado");
+        if (estado != null) {
+            estado = Candidatura.normalizarEstado(estado);
+        }
+        List<Candidatura> resultado = repositorio.filtrar(estado, opciones.get("empresa"));
+        if (resultado.isEmpty()) {
+            System.out.println("No hay candidaturas que mostrar.");
+            return;
+        }
+        System.out.printf("%-4s %-30s %-14s %-12s %s%n", "ID", "TÍTULO", "EMPRESA", "ESTADO", "FECHA");
+        for (Candidatura c : resultado) {
+            System.out.printf("%-4d %-30s %-14s %-12s %s%n", c.id(), c.titulo(), c.empresa(), c.estado(),
+                    c.fechaPostulacion().format(Candidatura.FORMATO_FECHA));
+        }
+        System.out.println(resultado.size() + " candidatura(s)");
+    }
 }
