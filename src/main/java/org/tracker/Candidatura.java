@@ -49,4 +49,18 @@ public record Candidatura(int id, String titulo, String empresa, String estado,
         }
         return normalizado;
     }
+    /**
+     * Convierte un texto dd/MM/yyyy en una fecha.
+     *
+     * @param texto la fecha escrita
+     * @return la fecha
+     * @throws IllegalArgumentException si el formato no es dd/MM/yyyy
+     */
+    public static LocalDate parsearFecha(String texto) {
+        try {
+            return LocalDate.parse(texto.trim(), FORMATO_FECHA);
+        } catch (DateTimeParseException e) {
+            throw new IllegalArgumentException("la fecha '" + texto + "' no tiene el formato dd/MM/yyyy");
+        }
+    }
 }
