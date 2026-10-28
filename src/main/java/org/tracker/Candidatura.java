@@ -108,4 +108,13 @@ public record Candidatura(int id, String titulo, String empresa, String estado,
         String notas = campos.length > 6 ? campos[6].trim() : "";
         return new Candidatura(id, titulo, empresa, estado, fecha, enlace, notas);
     }
+    /**
+     * Devuelve una copia de la candidatura con otro id.
+     *
+     * @param nuevoId el id nuevo
+     * @return la copia
+     */
+    public Candidatura conId(int nuevoId) {
+        return new Candidatura(nuevoId, titulo, empresa, estado, fechaPostulacion, enlace, notas);
+    }
 }
