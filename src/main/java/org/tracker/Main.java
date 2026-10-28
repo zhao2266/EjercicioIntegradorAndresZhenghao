@@ -102,4 +102,46 @@ private static void importar(String[] args, RepositorioFichero repositorio) thro
     System.out.println(importadas + " candidatura(s) importadas.");
 }
 
+private static Map<String, String> leerOpciones(String[] args, Set<String> permitidas) {
+    Map<String, String> opciones = new HashMap<>();
+    for (int i = 1; i < args.length; i += 2) {
+        String clave = args[i];
+        if (!permitidas.contains(clave)) {
+            throw new IllegalArgumentException("opción no válida '" + clave + "'. Opciones de "
+                    + args[0] + ": " + String.join(", ", permitidas));
+        }
+        if (i + 1 >= args.length) {
+            throw new IllegalArgumentException("falta el valor de " + clave);
+        }
+        opciones.put(clave.substring(2), args[i + 1]);
+    }
+    return opciones;
+}
 
+private static String requerida(Map<String, String> opciones, String nombre) {
+    if (!opciones.containsKey(nombre)) {
+        throw new IllegalArgumentException("falta el argumento obligatorio --" + nombre);
+    }
+    return Candidatura.obligatorio(opciones.get(nombre), nombre);
+}
+
+private static int leerId(String[] args, String comando) {
+    if (args.length != 2) {
+        throw new IllegalArgumentException("uso: " + comando + " <id>");
+    }
+    try {
+        return Integer.parseInt(args[1]);
+    } catch (NumberFormatException e) {
+        throw new IllegalArgumentException("el id '" + args[1] + "' no es un número");
+    }
+}
+
+private static void mostrarAyuda() {
+    System.out.println("Tracker de candidaturas. Uso:");
+    System.out.println("  -listar [--estado X] [--empresa Y]");
+    System.out.println("  -anadir --titulo X --empresa Y [--estado Z] [--fecha dd/MM/yyyy] [--enlace U] [--notas N]");
+    System.out.println("  -ver <id>");
+    System.out.println("  -borrar <id>");
+    System.out.println("  -importar <fichero.csv>");
+}
+}
