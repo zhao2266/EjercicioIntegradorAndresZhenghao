@@ -18,9 +18,20 @@ import java.util.List;
 public record Candidatura(int id, String titulo, String empresa, String estado,
                           LocalDate fechaPostulacion, String enlace, String notas) {
 
-}
-public record Candidatura(int id, String titulo, String empresa, String estado,
-                          LocalDate fechaPostulacion, String enlace, String notas) {
-
     public static final DateTimeFormatter FORMATO_FECHA = DateTimeFormatter.ofPattern("dd/MM/yyyy");
     public static final List<String> ESTADOS = List.of("pendiente", "entrevista", "rechazado", "aceptado");
+    /**
+     * Comprueba que un campo no esté vacío.
+     *
+     * @param valor  el texto del campo
+     * @param nombre nombre del campo (para el mensaje de error)
+     * @return el texto sin espacios sobrantes
+     * @throws IllegalArgumentException si está vacío
+     */
+    public static String obligatorio(String valor, String nombre) {
+        if (valor == null || valor.isBlank()) {
+            throw new IllegalArgumentException("el campo " + nombre + " no puede estar vacío");
+        }
+        return valor.trim();
+    }
+}
