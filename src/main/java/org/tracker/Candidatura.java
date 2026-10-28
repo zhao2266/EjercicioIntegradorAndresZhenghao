@@ -19,3 +19,8 @@ public record Candidatura(int id, String titulo, String empresa, String estado,
                           LocalDate fechaPostulacion, String enlace, String notas) {
 
 }
+public record Candidatura(int id, String titulo, String empresa, String estado,
+                          LocalDate fechaPostulacion, String enlace, String notas) {
+
+    public static final DateTimeFormatter FORMATO_FECHA = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+    public static final List<String> ESTADOS = List.of("pendiente", "entrevista", "rechazado", "aceptado");
