@@ -1,0 +1,16 @@
+id;titulo;empresa;estado;fechaPostulacion;enlace;notas
+1;Desarrollador Java;Indra;pendiente;20/10/2026;https://www.indracompany.com/es/empleo;Enviado por LinkedIn
+2;Backend Developer;Accenture;pendiente;18/10/2026;https://www.accenture.com/es-es/careers;Pedir referencia a un conocido
+3;Programador Junior;Capgemini;pendiente;15/10/2026;https://www.capgemini.com/es-es/carreras;Sin respuesta todavía
+4;Desarrollador Full Stack;NTT Data;pendiente;12/10/2026;https://es.nttdata.com/careers;Oferta publicada en InfoJobs
+5;Analista Programador;Indra;pendiente;08/10/2026;https://www.indracompany.com/es/empleo;Requiere conocimientos de Spring
+6;Desarrollador Java Junior;Capgemini;entrevista;30/09/2026;https://www.capgemini.com/es-es/carreras;Entrevista con RRHH el lunes
+7;Ingeniero de Software;Accenture;entrevista;25/09/2026;https://www.accenture.com/es-es/careers;Prueba técnica pendiente
+8;Desarrollador Backend;NTT Data;entrevista;20/09/2026;https://es.nttdata.com/careers;Segunda entrevista con el equipo técnico
+9;Desarrollador Web;Indra;entrevista;14/09/2026;https://www.indracompany.com/es/empleo;Entrevista telefónica realizada
+10;Prácticas Desarrollo;Accenture;rechazado;28/08/2026;https://www.accenture.com/es-es/careers;Buscaban más experiencia
+11;Desarrollador Java;NTT Data;rechazado;18/08/2026;https://es.nttdata.com/careers;Cubierta por otro candidato
+12;Soporte Aplicaciones;Capgemini;rechazado;05/08/2026;;Perfil demasiado junior
+13;Desarrollador Java;Capgemini;aceptado;02/09/2026;https://www.capgemini.com/es-es/carreras;Incorporación en noviembre
+14;Prácticas Programación;Indra;aceptado;12/08/2026;https://www.indracompany.com/es/empleo;Convenio de prácticas firmado
+15;Desarrollador Junior;NTT Data;aceptado;29/07/2026;;Oferta recibida por correo
