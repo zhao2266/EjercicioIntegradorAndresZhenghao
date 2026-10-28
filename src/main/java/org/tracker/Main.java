@@ -117,4 +117,17 @@ public class Main {
         System.out.println("Candidatura añadida con id " + guardada.id());
     }
 
+    private static void ver(String[] args, RepositorioFichero repositorio) throws IOException {
+        int id = leerId(args, "-ver");
+        Candidatura c = repositorio.buscarPorId(id)
+                .orElseThrow(() -> new IllegalArgumentException("no existe ninguna candidatura con id " + id));
+        System.out.println("ID:         " + c.id());
+        System.out.println("Título:     " + c.titulo());
+        System.out.println("Empresa:    " + c.empresa());
+        System.out.println("Estado:     " + c.estado());
+        System.out.println("Fecha:      " + c.fechaPostulacion().format(Candidatura.FORMATO_FECHA));
+        System.out.println("Enlace:     " + (c.enlace().isEmpty() ? "-" : c.enlace()));
+        System.out.println("Notas:      " + (c.notas().isEmpty() ? "-" : c.notas()));
+    }
+
 }
