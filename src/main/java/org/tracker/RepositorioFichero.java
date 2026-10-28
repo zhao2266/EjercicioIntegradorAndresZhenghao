@@ -83,4 +83,19 @@ public class RepositorioFichero {
     public Optional<Candidatura> buscarPorId(int id) throws IOException {
         return leerTodas().stream().filter(c -> c.id() == id).findFirst();
     }
+    /**
+     * Borra una candidatura.
+     *
+     * @param id el id de la candidatura
+     * @return true si existía y se borró, false si no había ninguna con ese id
+     * @throws IOException si falla la lectura o escritura
+     */
+    public boolean borrar(int id) throws IOException {
+        List<Candidatura> todas = leerTodas();
+        boolean borrada = todas.removeIf(c -> c.id() == id);
+        if (borrada) {
+            guardar(todas);
+        }
+        return borrada;
+    }
 }
