@@ -55,4 +55,22 @@ public class RepositorioFichero {
         }
         return candidaturas;
     }
+    /**
+     * Añade una candidatura nueva con el siguiente id libre.
+     *
+     * @param nueva candidatura (su id se ignora)
+     * @return la candidatura guardada, con su id
+     * @throws IOException si falla la lectura o escritura
+     */
+    public Candidatura anadir(Candidatura nueva) throws IOException {
+        List<Candidatura> todas = leerTodas();
+        Candidatura guardada = nueva.conId(siguienteId(todas));
+        todas.add(guardada);
+        guardar(todas);
+        return guardada;
+    }
+
+    private int siguienteId(List<Candidatura> candidaturas) {
+        return candidaturas.stream().mapToInt(Candidatura::id).max().orElse(0) + 1;
+    }
 }
