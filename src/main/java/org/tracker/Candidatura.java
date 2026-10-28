@@ -63,4 +63,23 @@ public record Candidatura(int id, String titulo, String empresa, String estado,
             throw new IllegalArgumentException("la fecha '" + texto + "' no tiene el formato dd/MM/yyyy");
         }
     }
+    /**
+     * Convierte la candidatura en una línea del fichero, con campos separados por ';'.
+     *
+     * @return la línea lista para guardar
+     */
+    public String aLinea() {
+        return String.join(";",
+                String.valueOf(id),
+                limpiar(titulo),
+                limpiar(empresa),
+                estado,
+                fechaPostulacion.format(FORMATO_FECHA),
+                limpiar(enlace),
+                limpiar(notas));
+    }
+
+    private static String limpiar(String texto) {
+        return texto == null ? "" : texto.replace(";", ",").replace("\n", " ").trim();
+    }
 }
