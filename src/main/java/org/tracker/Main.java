@@ -102,4 +102,19 @@ public class Main {
         }
         System.out.println(resultado.size() + " candidatura(s)");
     }
+    private static void anadir(String[] args, RepositorioFichero repositorio) throws IOException {
+        Map<String, String> opciones = leerOpciones(args,
+                Set.of("--titulo", "--empresa", "--estado", "--fecha", "--enlace", "--notas"));
+        String titulo = requerida(opciones, "titulo");
+        String empresa = requerida(opciones, "empresa");
+        String estado = Candidatura.normalizarEstado(opciones.getOrDefault("estado", "pendiente"));
+        LocalDate fecha = opciones.containsKey("fecha")
+                ? Candidatura.parsearFecha(opciones.get("fecha"))
+                : LocalDate.now();
+        Candidatura nueva = new Candidatura(0, titulo, empresa, estado, fecha,
+                opciones.getOrDefault("enlace", ""), opciones.getOrDefault("notas", ""));
+        Candidatura guardada = repositorio.anadir(nueva);
+        System.out.println("Candidatura añadida con id " + guardada.id());
+    }
+
 }
