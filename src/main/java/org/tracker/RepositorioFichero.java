@@ -21,4 +21,12 @@ public class RepositorioFichero {
     public RepositorioFichero(Path ruta) {
         this.ruta = ruta;
     }
+    private void guardar(List<Candidatura> candidaturas) throws IOException {
+        List<String> lineas = new ArrayList<>();
+        lineas.add(CABECERA);
+        for (Candidatura c : candidaturas) {
+            lineas.add(c.aLinea());
+        }
+        Files.write(ruta, lineas, StandardCharsets.UTF_8);
+    }
 }
