@@ -84,5 +84,12 @@ private static void ver(String[] args, RepositorioFichero repositorio) throws IO
     System.out.println("Notas:      " + (c.notas().isEmpty() ? "-" : c.notas()));
 }
 
+private static void borrar(String[] args, RepositorioFichero repositorio) throws IOException {
+    int id = leerId(args, "-borrar");
+    if (!repositorio.borrar(id)) {
+        throw new IllegalArgumentException("no existe ninguna candidatura con id " + id);
+    }
+    System.out.println("Candidatura " + id + " borrada.");
+}
 
 
