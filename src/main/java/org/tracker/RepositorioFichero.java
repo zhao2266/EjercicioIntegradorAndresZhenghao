@@ -98,4 +98,23 @@ public class RepositorioFichero {
         }
         return borrada;
     }
+    /**
+     * Filtra las candidaturas por estado y/o empresa. Un filtro null no se aplica.
+     *
+     * @param estado  estado exacto (sin importar mayúsculas), o null
+     * @param empresa texto que debe contener el nombre de la empresa, o null
+     * @return las candidaturas que cumplen los filtros
+     * @throws IOException si falla la lectura
+     */
+    public List<Candidatura> filtrar(String estado, String empresa) throws IOException {
+        List<Candidatura> resultado = new ArrayList<>();
+        for (Candidatura c : leerTodas()) {
+            boolean estadoOk = estado == null || c.estado().equalsIgnoreCase(estado.trim());
+            boolean empresaOk = empresa == null || c.empresa().toLowerCase().contains(empresa.trim().toLowerCase());
+            if (estadoOk && empresaOk) {
+                resultado.add(c);
+            }
+        }
+        return resultado;
+    }
 }
