@@ -73,4 +73,14 @@ public class RepositorioFichero {
     private int siguienteId(List<Candidatura> candidaturas) {
         return candidaturas.stream().mapToInt(Candidatura::id).max().orElse(0) + 1;
     }
+    /**
+     * Busca una candidatura por su id.
+     *
+     * @param id el id a buscar
+     * @return la candidatura, o vacío si no existe
+     * @throws IOException si falla la lectura
+     */
+    public Optional<Candidatura> buscarPorId(int id) throws IOException {
+        return leerTodas().stream().filter(c -> c.id() == id).findFirst();
+    }
 }
