@@ -34,4 +34,19 @@ public record Candidatura(int id, String titulo, String empresa, String estado,
         }
         return valor.trim();
     }
+    /**
+     * Comprueba que el estado es válido y lo devuelve en minúsculas.
+     *
+     * @param estado texto del estado
+     * @return el estado normalizado
+     * @throws IllegalArgumentException si no es uno de los estados permitidos
+     */
+    public static String normalizarEstado(String estado) {
+        String normalizado = estado.trim().toLowerCase();
+        if (!ESTADOS.contains(normalizado)) {
+            throw new IllegalArgumentException("estado '" + estado + "' no válido. Estados posibles: "
+                    + String.join(", ", ESTADOS));
+        }
+        return normalizado;
+    }
 }
