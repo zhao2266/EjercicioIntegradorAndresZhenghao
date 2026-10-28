@@ -29,4 +29,30 @@ public class RepositorioFichero {
         }
         Files.write(ruta, lineas, StandardCharsets.UTF_8);
     }
+    /**
+     * Lee todas las candidaturas del fichero. Si el fichero no existe devuelve una lista vacía.
+     *
+     * @return la lista de candidaturas
+     * @throws IOException              si falla la lectura
+     * @throws IllegalArgumentException si alguna línea del fichero está mal
+     */
+    public List<Candidatura> leerTodas() throws IOException {
+        List<Candidatura> candidaturas = new ArrayList<>();
+        if (!Files.exists(ruta)) {
+            return candidaturas;
+        }
+        List<String> lineas = Files.readAllLines(ruta, StandardCharsets.UTF_8);
+        for (int i = 0; i < lineas.size(); i++) {
+            String linea = lineas.get(i);
+            if (linea.isBlank() || linea.startsWith("id;")) {
+                continue;
+            }
+            try {
+                candidaturas.add(Candidatura.desdeLinea(linea));
+            } catch (IllegalArgumentException e) {
+                throw new IllegalArgumentException("línea " + (i + 1) + " de " + ruta + ": " + e.getMessage());
+            }
+        }
+        return candidaturas;
+    }
 }
