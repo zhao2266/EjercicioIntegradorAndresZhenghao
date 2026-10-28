@@ -92,4 +92,14 @@ private static void borrar(String[] args, RepositorioFichero repositorio) throws
     System.out.println("Candidatura " + id + " borrada.");
 }
 
+private static void importar(String[] args, RepositorioFichero repositorio) throws IOException {
+    if (args.length != 2) {
+        throw new IllegalArgumentException("uso: -importar <fichero.csv>");
+    }
+    List<String> avisos = new ArrayList<>();
+    int importadas = repositorio.importar(Path.of(args[1]), avisos);
+    avisos.forEach(System.out::println);
+    System.out.println(importadas + " candidatura(s) importadas.");
+}
+
 
