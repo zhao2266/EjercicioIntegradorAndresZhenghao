@@ -41,6 +41,7 @@ El archivo con los datos de ejemplo es `candidaturas.csv`, en la raíz del proye
 
 ## Diseño
 
-- Prototipo en Figma (solo lectura): _pendiente de añadir enlace_
+- Prototipo en Figma (solo lectura): https://www.figma.com/proto/HEcHbBfe3gu61ILh8ACysF/FigmaZhenghaoAndres?node-id=0-1&p=f&t=VsbpKpXu2Uy9ioRh-0&scaling=min-zoom&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=6%3A9820
+
 - Manual de estilo y pantallas: carpeta `diseno/`
 
