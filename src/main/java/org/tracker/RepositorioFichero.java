@@ -117,4 +117,29 @@ public class RepositorioFichero {
         }
         return resultado;
     }
+
+    public int importar(Path csv, List<String> avisos) throws IOException {
+        if (!Files.exists(csv)) {
+            throw new IOException("no se encuentra el archivo " + csv);
+        }
+        List<Candidatura> todas = leerTodas();
+        int siguiente = siguienteId(todas);
+        int importadas = 0;
+        List<String> lineas = Files.readAllLines(csv, StandardCharsets.UTF_8);
+        for (int i = 0; i < lineas.size(); i++) {
+            String linea = lineas.get(i);
+            if (linea.isBlank() || linea.startsWith("id;")) {
+                continue;
+            }
+            try {
+                todas.add(Candidatura.desdeLinea(linea).conId(siguiente));
+                siguiente++;
+                importadas++;
+            } catch (IllegalArgumentException e) {
+                avisos.add("línea " + (i + 1) + " ignorada: " + e.getMessage());
+            }
+        }
+        guardar(todas);
+        return importadas;
+    }
 }
